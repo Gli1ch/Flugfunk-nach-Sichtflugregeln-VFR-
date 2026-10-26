@@ -207,6 +207,21 @@ a.sc:hover{border-color:var(--accent)}
 .q .mono-o{font-family:var(--f-radio);font-weight:600}
 
 footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap}
+footer .wrap > span{max-width:70ch}
+footer nav{display:flex;gap:16px}
+footer nav a{color:var(--muted);text-decoration:none;font-weight:500}
+footer nav a:hover{color:var(--fg);text-decoration:underline}
+
+/* Rechtliches */
+.legal{max-width:720px;display:flex;flex-direction:column;gap:28px}
+.legal section{display:flex;flex-direction:column;gap:10px}
+.legal h2{font-size:20px}
+.legal p,.legal li{max-width:68ch;color:var(--fg)}
+.legal ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.legal address{font-style:normal;line-height:1.6}
+.legal a{color:var(--accent);text-underline-offset:2px}
+.legal .stand{color:var(--muted);font-size:14px}
 </style>
 <style>body{margin:0}[hidden]{display:none!important}</style>
 </head>
@@ -231,7 +246,7 @@ footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted);fo
 <main class="wrap" id="app"></main>
 
 <footer>
-  <div class="wrap">Nur zu Übungszwecken. Verfahren, Frequenzen und Meldepunkte sind vereinfacht dargestellt. Maßgeblich sind AIP, NfL und die aktuelle Sichtanflugkarte.</div>
+  <div class="wrap"><span>Nur zu Übungszwecken. Verfahren, Frequenzen und Meldepunkte sind vereinfacht dargestellt. Maßgeblich sind AIP, NfL und die aktuelle Sichtanflugkarte.</span><nav aria-label="Rechtliches"><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></nav></div>
 </footer>
 
 <script>
@@ -529,8 +544,65 @@ function viewRufzeichen(){
   });
 }
 
+/* ---------- Rechtliches ---------- */
+const OWNER={name:"Lars Hammer",street:"Heubergweg 11",city:"97833 Frammersbach",country:"Deutschland",mail:"lars.hammer@outlook.com"};
+const ADDR=`<address>${OWNER.name}<br>${OWNER.street}<br>${OWNER.city}<br>${OWNER.country}</address>`;
+
+function viewImpressum(){
+  app.innerHTML=`
+  <article class="legal">
+    <div class="pagehead" style="margin-bottom:0"><span class="eyebrow">Rechtliches</span><h1>Impressum</h1></div>
+    <section><h2>Angaben gemäß § 5 DDG</h2>${ADDR}</section>
+    <section><h2>Kontakt</h2><p>E-Mail: ${OWNER.mail}</p></section>
+    <section><h2>Verantwortlich für den Inhalt</h2>${ADDR}</section>
+    <section><h2>Hinweis zu den Inhalten</h2>
+      <p>Der VFR Funktrainer ist ein privates, nicht kommerzielles Lernangebot. Die Funkbeispiele dienen ausschließlich der Übung. Verfahren, Frequenzen und Meldepunkte sind vereinfacht dargestellt und nicht für die Flugdurchführung bestimmt. Maßgeblich sind stets die aktuellen Veröffentlichungen, insbesondere AIP, NfL und die gültigen Luftfahrtkarten.</p>
+      <p>Die Inhalte wurden mit Sorgfalt erstellt. Für ihre Richtigkeit, Vollständigkeit und Aktualität kann jedoch keine Gewähr übernommen werden.</p></section>
+    <section><h2>Externe Links</h2>
+      <p>Für die Inhalte verlinkter externer Seiten sind ausschließlich deren Betreiber verantwortlich. Bei Bekanntwerden von Rechtsverletzungen werden entsprechende Links umgehend entfernt.</p></section>
+  </article>`;
+}
+
+function viewDatenschutz(){
+  app.innerHTML=`
+  <article class="legal">
+    <div class="pagehead" style="margin-bottom:0"><span class="eyebrow">Rechtliches</span><h1>Datenschutzerklärung</h1><p class="lead">Kurz gesagt: kein Konto, keine Cookies, kein Tracking. Dein Kennzeichen und dein Lernfortschritt bleiben in deinem Browser.</p></div>
+
+    <section><h2>1. Verantwortlicher</h2>
+      ${ADDR}<p>E-Mail: ${OWNER.mail}</p></section>
+
+    <section><h2>2. Hosting</h2>
+      <p>Diese Website wird bei Netlify, Inc., San Francisco, USA gehostet. Beim Aufruf der Seite verarbeitet Netlify technisch notwendige Daten, die dein Browser automatisch übermittelt:</p>
+      <ul><li>IP-Adresse</li><li>Datum und Uhrzeit des Abrufs</li><li>aufgerufene Seite und übertragene Datenmenge</li><li>Browsertyp, Betriebssystem und Referrer-URL</li></ul>
+      <p>Diese Daten werden benötigt, um die Website auszuliefern und ihre Sicherheit und Stabilität zu gewährleisten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in einem sicheren und funktionsfähigen Betrieb der Website.</p>
+      <p>Da Netlify seinen Sitz in den USA hat, kann eine Übermittlung in die USA stattfinden. Diese stützt sich auf die Standardvertragsklauseln der EU-Kommission sowie, soweit vorhanden, auf eine Zertifizierung nach dem EU-US Data Privacy Framework. Mit Netlify besteht ein Vertrag zur Auftragsverarbeitung. Weitere Informationen: <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">netlify.com/privacy</a>.</p></section>
+
+    <section><h2>3. Speicherung im Browser (Local Storage)</h2>
+      <p>Damit du dein Kennzeichen nicht bei jedem Besuch neu eingeben musst, speichert die Website folgende Angaben im lokalen Speicher deines Browsers:</p>
+      <ul><li>das von dir eingetragene Kennzeichen</li><li>deine Einstellungen (Übungsmodus, buchstabierte Anzeige)</li><li>welche Lektionen und Funkbeispiele du abgeschlossen hast</li></ul>
+      <p>Diese Angaben verlassen deinen Browser nicht und werden nicht an uns oder Dritte übertragen. Die Speicherung ist für die von dir ausdrücklich gewünschte Funktion unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Du kannst die Daten jederzeit löschen, indem du die Websitedaten in deinem Browser entfernst.</p>
+      <p>Cookies, Analyse- oder Trackingdienste werden nicht eingesetzt.</p></section>
+
+    <section><h2>4. Schriftarten (Google Fonts)</h2>
+      <p>Zur einheitlichen Darstellung nutzt diese Website Schriftarten von Google Fonts, angeboten von Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Beim Aufruf der Seite lädt dein Browser die Schriftarten von Servern von Google. Dabei wird deine IP-Adresse an Google übermittelt, eine Übermittlung in die USA ist nicht ausgeschlossen.</p>
+      <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Das berechtigte Interesse liegt in einer einheitlichen und gut lesbaren Darstellung. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p></section>
+
+    <section><h2>5. Kontakt per E-Mail</h2>
+      <p>Wenn du per E-Mail Kontakt aufnimmst, werden deine Angaben zur Bearbeitung der Anfrage verarbeitet (Art. 6 Abs. 1 lit. f DSGVO) und gelöscht, sobald sie nicht mehr erforderlich sind.</p></section>
+
+    <section><h2>6. Externe Links</h2>
+      <p>Die Website enthält Links zu externen Seiten, zum Beispiel zu GitHub. Erst wenn du einen solchen Link anklickst, werden Daten an den jeweiligen Anbieter übertragen. Dort gilt dessen Datenschutzerklärung.</p></section>
+
+    <section><h2>7. Deine Rechte</h2>
+      <p>Du hast jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen eine Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (Art. 21). Wende dich dazu einfach an die oben genannte Adresse.</p>
+      <p>Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren. Zuständig ist das Bayerische Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach.</p></section>
+
+    <p class="stand">Stand: Oktober 2026</p>
+  </article>`;
+}
+
 /* ---------- Router ---------- */
-const VIEWS={start:viewStart,kurs:viewKurs,beispiele:()=>viewBeispiele(),ctr:viewCTR,rufzeichen:viewRufzeichen};
+const VIEWS={start:viewStart,kurs:viewKurs,beispiele:()=>viewBeispiele(),ctr:viewCTR,rufzeichen:viewRufzeichen,impressum:viewImpressum,datenschutz:viewDatenschutz};
 function route(){
   const v=(location.hash||"").slice(1);const key=VIEWS[v]?v:"start";
   nav(key);VIEWS[key]();window.scrollTo(0,0);
