@@ -2,7 +2,7 @@
 
 Kostenlose Lernplattform für den Flugfunk nach Sichtflugregeln (VFR). Privatpiloten und Flugschüler üben realistische Funkdialoge Schritt für Schritt, rein textbasiert und mit dem eigenen Kennzeichen.
 
-**Live-Version:** _Link folgt_
+**Live-Version:** [flugfunk-nach-sichtflugregeln-vfr.netlify.app](https://flugfunk-nach-sichtflugregeln-vfr.netlify.app)
 
 > **Hinweis:** Nur zu Übungszwecken. Verfahren, Frequenzen und Meldepunkte sind vereinfacht dargestellt. Maßgeblich sind AIP, NfL und die aktuelle Sichtanflugkarte.
 
